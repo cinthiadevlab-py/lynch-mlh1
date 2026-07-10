@@ -1,0 +1,24 @@
+# Dependencias do projeto (linguagem R)
+#
+# Este e um projeto em R. Este arquivo lista, para leitura humana, os
+# pacotes R necessarios para reproduzir a analise. O R NAO instala este
+# arquivo automaticamente (ao contrario do requirements.txt do Python com
+# pip). Para instalar os pacotes, execute no console do R:
+#
+#   install.packages(c("here", "tidyverse"))
+#
+# Versao do R utilizada no desenvolvimento: 4.6.0 (2026-04-24 ucrt).
+#
+# Nota de reprodutibilidade: o controle de versoes exatas dos pacotes
+# (por exemplo, via renv) podera ser adotado em fase posterior; ate la,
+# as versoes instaladas valem como referencia.
+
+# --- Infraestrutura -------------------------------------------------
+here          # resolucao de caminhos relativos a raiz do projeto
+
+# --- Manipulacao e leitura de dados ---------------------------------
+tidyverse     # leitura, manipulacao e visualizacao de dados
+
+# --- A acrescentar conforme o pipeline evoluir ----------------------
+# Pacotes adicionais (por exemplo, para anotacao de variantes) serao
+# incluidos aqui quando forem efetivamente utilizados nos scripts.

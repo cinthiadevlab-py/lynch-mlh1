@@ -1,0 +1,22 @@
+# .gitattributes - normalizacao de fim de linha do repositorio
+# Objetivo: LF consistente e diffs limpos nos artefatos de texto;
+# preservar byte-a-byte os brutos de dados; nao normalizar o .Rproj.
+
+# Baseline: Git detecta texto e normaliza para LF no repositorio
+* text=auto
+
+# Scripts e docs: forcar LF (working tree e repo)
+*.R   text eol=lf
+*.md  text eol=lf
+
+# Avulsos de texto do repo: LF explicito
+LICENSE          text eol=lf
+requirements.txt text eol=lf
+.gitignore       text eol=lf
+.gitattributes   text eol=lf
+
+# Dados brutos/externos: preservar bytes exatamente (integridade / md5)
+dados/**  -text
+
+# .Rproj: config da IDE; excecao CRLF documentada (decisoes.md secao 9).
+*.Rproj  -text

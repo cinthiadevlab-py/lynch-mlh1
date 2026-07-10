@@ -1,0 +1,44 @@
+# =====================================================================
+# .gitignore - projeto Lynch / MLH1
+# Regra geral: versionar codigo, docs e DADOS REAIS PUBLICOS (fontes
+# externas). Ignorar saidas regeneraveis e arquivos de sessao/IDE.
+# Convencoes do projeto: ver docs/PADROES.md
+# =====================================================================
+
+# --- Sessao e cache do R ---------------------------------------------
+.Rhistory
+.RData
+.Rapp.history
+.Ruserdata
+*.Rproj.user
+.Rproj.user/
+
+# --- Arquivos temporarios / sistema operacional ----------------------
+.DS_Store
+Thumbs.db
+*~
+*.tmp
+
+# --- Dados regeneraveis (saidas parciais e finais de scripts) --------
+# Sao reproduzidos rodando o pipeline; nao precisam ir para o Git.
+# Mantem a PASTA (via .gitkeep) mas ignora o CONTEUDO.
+dados/intermediarios/*
+!dados/intermediarios/.gitkeep
+dados/processados/*
+!dados/processados/.gitkeep
+
+# --- Resultados gerados ----------------------------------------------
+# Tabelas/figuras/relatorios sao regenerados pelos scripts.
+# Mantem a estrutura, ignora o conteudo pesado.
+resultados/tabelas/*
+!resultados/tabelas/.gitkeep
+resultados/figuras/*
+!resultados/figuras/.gitkeep
+resultados/relatorios/*
+!resultados/relatorios/.gitkeep
+
+# --- NAO ignorar (deixar explicito o que SOBE) -----------------------
+# dados/brutos/      -> dado real publico (ClinVar)        : VERSIONADO
+# dados/externos/    -> dado real publico (gnomAD etc.)    : VERSIONADO
+# dados/legado_simulado/ -> quarentena rotulada            : VERSIONADO
+#   (sobe rotulado como SIMULADO, para transparencia/honestidade)
