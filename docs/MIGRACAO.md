@@ -4,8 +4,7 @@ Este documento registra a reorganizacao estrutural do projeto: o que
 motivou a reconstrucao, o que foi preservado e o que foi alterado. Tem por
 objetivo garantir transparencia e rastreabilidade do processo.
 
-Estado: documento em construcao. Etapas ainda nao concluidas estao marcadas
-com [A REGISTRAR].
+Estado: documento em atualizacao continua, acompanhando o avanco do projeto.
 
 ## 1. Motivacao
 
@@ -38,8 +37,19 @@ Apenas pecas validadas sao incorporadas a estrutura reconstruida:
 - dados reais do gnomAD v4.1.1 (variantes e restricao genica);
 - scripts revisados, reescritos quando necessario para usar dado real.
 
-[A REGISTRAR: lista final dos scripts trazidos e respectivas revisoes,
-conforme forem incorporados.]
+Ate o momento, os seguintes scripts foram trazidos e validados:
+
+- scripts/01_ingestao_gnomad.R: ingestao e validacao das variantes do
+  gnomAD v4.1.1 para o MLH1, com validacao por assercao (4365 variantes).
+- scripts/02_ingestao_clinvar.R: ingestao e validacao das variantes do
+  ClinVar para o MLH1, com validacao hibrida (6462 variantes).
+
+Como infraestrutura de suporte, foram incorporados config/paths.R
+(centralizacao dos caminhos) e criar_estrutura_diretorios.R (criacao
+reprodutivel da arvore de diretorios).
+
+Os scripts de curadoria de colunas, integracao das fontes e classificacao
+de variantes serao reescritos e incorporados nas fases seguintes.
 
 ## 4. O que foi aposentado
 
@@ -52,11 +62,33 @@ conforme forem incorporados.]
 ## 5. Conferencia de dados a re-obter
 
 - ClinVar: a versao anterior continha apenas um subconjunto das
-  classificacoes; sera re-obtida a base completa (todas as classificacoes).
+  classificacoes; foi re-obtida a base completa (todas as classificacoes).
 
-[A REGISTRAR: data e parametros do novo download do ClinVar.]
+O novo download foi realizado pela interface web do ClinVar, com os
+parametros:
+
+- consulta: MLH1[gene];
+- filtro de significancia: nenhum (espectro completo de classificacoes);
+- formato: Tabular (text);
+- ordenacao: por localizacao;
+- data do download: 29/06/2026.
+
+O arquivo bruto (dados/brutos/clinvar_mlh1_variants_raw.txt) contem 6462
+variantes e 24 colunas reais. A descricao das colunas esta em
+docs/dicionario_dados.md.
 
 ## 6. Estado da migracao
 
-[A REGISTRAR: marco de conclusao da migracao e referencia a primeira versao
-publicada do projeto reconstruido.]
+A estrutura reconstruida foi consolidada, versionada e publicada em
+repositorio publico. O primeiro marco corresponde a versao v0.1.0, que
+disponibiliza a estrutura reprodutivel do projeto: scripts de ingestao e
+validacao, centralizacao de caminhos, documentacao e arquivos de
+configuracao do repositorio.
+
+Os dados brutos de fontes externas (ClinVar e gnomAD) nao foram versionados
+neste marco. Sua proveniencia esta documentada e o pipeline e reprodutivel
+a partir do download das fontes originais; a politica de redistribuicao
+desses dados sera definida em etapa posterior.
+
+O versionamento segue o esquema SemVer. A numeracao 0.x indica projeto em
+desenvolvimento, anterior a primeira versao estavel.
