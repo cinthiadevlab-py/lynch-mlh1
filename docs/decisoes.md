@@ -157,3 +157,43 @@ improprias ou nao atribuiveis que escapem a busca textual. As duas
 camadas, em conjunto, asseguram que o material publicado permaneca
 rastreavel, atribuivel a fontes reais e livre de conteudo alheio ao
 proprio projeto.
+
+## 11. Disponibilidade e redistribuicao dos dados brutos
+
+Contexto: o projeto utiliza dois conjuntos brutos de fontes publicas - as
+classificacoes do ClinVar (MLH1) e o export de variantes do gnomAD v4.1.1
+(MLH1). Define-se aqui o tratamento de cada um quanto a redistribuicao no
+repositorio.
+
+Decisao:
+- ClinVar: dominio publico. O arquivo bruto e redistribuido no repositorio, com
+  atribuicao a fonte (ver README e docs/dicionario_dados.md). O ClinVar e
+  atualizado continuamente, de modo que o arquivo versionado preserva o recorte
+  exato utilizado (busca MLH1[gene], obtido em 29/06/2026), nao reproduzido por
+  um download posterior.
+- gnomAD v4.1.1: o export bruto NAO e redistribuido no repositorio. As
+  frequencias alelicas sao derivadas pelo pipeline a partir do arquivo obtido
+  diretamente da fonte; instrucoes de obtencao em docs/MIGRACAO.md.
+
+Justificativa (gnomAD):
+1. Licenciamento. O export inclui anotacoes do SpliceAI (Illumina) sob licenca
+   CC BY-NC 4.0 (uso academico e nao-comercial). Redistribuir o arquivo integral
+   propagaria essa restricao ao repositorio; opta-se por nao redistribuir o bruto.
+2. Reprodutibilidade. E assegurada pelo pipeline e pelas instrucoes de download,
+   nao pela presenca do arquivo no controle de versao. O gnomAD v4.1.1 e um
+   release versionado e estavel: um novo download reproduz o mesmo conjunto.
+
+Disponibilidade futura: os conjuntos do gnomAD sao mantidos em hospedagem publica
+persistente (por exemplo, Google Cloud e AWS), com compromisso declarado da fonte
+de preservar o acesso as versoes anteriores. A nao inclusao do bruto no
+repositorio nao compromete o acesso futuro ao dado.
+
+Natureza dos dados: esta decisao nao altera a natureza real dos dados. Ambos os
+conjuntos sao reais e publicos; "nao redistribuir" refere-se a logistica de
+distribuicao do arquivo, nao a procedencia do dado, que permanece integra na
+analise.
+
+Alternativa reversivel: caso, no futuro, se opte por incluir dados de frequencia
+no repositorio, permanece disponivel versionar apenas as colunas de frequencia
+efetivamente utilizadas, sem as anotacoes de terceiros sujeitas a restricao. A
+decisao atual e reversivel.

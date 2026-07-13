@@ -128,3 +128,20 @@ DOI: 10.1038/gim.2015.30.
 O código-fonte é distribuído sob a licença MIT (ver arquivo `LICENSE`).
 Os dados de terceiros (ClinVar, gnomAD) permanecem sujeitos às licenças de suas
 respectivas fontes e não são relicenciados por este projeto.
+
+### Atribuição e disponibilidade dos dados
+
+- ClinVar (NCBI): dados em domínio público, redistribuídos neste repositório
+  com atribuição à fonte. O arquivo bruto
+  (dados/brutos/clinvar_mlh1_variants_raw.txt) é um recorte da busca MLH1[gene]
+  obtido em 29/06/2026; a base é atualizada continuamente.
+  Referência: Landrum MJ, et al. ClinVar: improving access to variant
+  interpretations and supporting evidence. Nucleic Acids Res.
+  2018;46(D1):D1062-D1067. doi:10.1093/nar/gkx1153. PMID: 29165669.
+
+- gnomAD v4.1.1 (Broad Institute): dados-resumo abertos, usados para derivar
+  frequências alélicas via pipeline. O arquivo bruto NÃO é redistribuído neste
+  repositório, pois o export contém anotações do SpliceAI (Illumina) sob licença
+  CC BY-NC 4.0 (uso acadêmico e não-comercial). Instruções de obtenção em
+  docs/MIGRACAO.md. Este projeto inclui dados do gnomAD v4.1 release
+  (https://gnomad.broadinstitute.org).
