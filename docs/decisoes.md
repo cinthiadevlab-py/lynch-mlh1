@@ -69,13 +69,33 @@ criterio por variante (PVS1, quando aplicavel), de dados gene-especificos
 ## 5. Limiares de frequencia alelica gene-especificos
 
 Decisao: os limiares de AF para acionar PM2, BS1 e BA1 em MLH1 seguem a
-especificacao gene-especifica do painel de especialistas (VCEP) de cancer
-colorretal hereditario (InSiGHT/ClinGen), e nao os limiares genericos padrao.
+Decisao: os limiares de frequencia para acionar PM2_Supporting, BS1 e BA1 em
+MLH1 seguem a especificacao gene-especifica do painel de especialistas (VCEP)
+de cancer colorretal hereditario (InSiGHT/ClinGen), e nao os limiares
+genericos padrao.
 
-Justificativa: a diretriz ACMG/AMP preve calibracao gene-especifica dos
-criterios de frequencia. Os valores exatos da especificacao do VCEP serao
-confirmados na fonte oficial antes da aplicacao [A CONFIRMAR na fase de
-analise]; nao serao fixados de memoria.
+Fonte confirmada na fase de analise: ClinGen InSiGHT Hereditary Colorectal
+Cancer/Polyposis VCEP, especificacao MLH1 v2.0.0 (liberada 2026-03-05),
+transcrito NM_000249.4, tipo Richards 2015; CSpec registry GN115. gnomAD
+v4.1.1.
+
+PM2_Supporting: Grpmax AF bruta < 0.00002 (menos de 1 em 50.000 alelos).
+Metrica: maximo de AC/AN sobre seis grupos de ancestralidade do gnomAD v4
+(African/African American, Admixed American, East Asian, European non-Finnish,
+South Asian, Middle Eastern). Excluidos do maximo: Amish, Ashkenazi Jewish,
+European Finnish, Remaining, conforme GEN_ANC_GROUPS_TO_REMOVE_FOR_GRPMAX v4
+= {ami, asj, fin, oth, remaining} do gnomad_methods. Variante ausente do
+gnomAD: AF = 0, criterio atendido.
+
+BS1: Grpmax FAF >= 0.0001 e < 0.001. Metrica: coluna GroupMax.FAF.frequency do
+export gnomAD v4.1.1 (filtering allele frequency, limite inferior do IC95%).
+
+BA1: Grpmax FAF >= 0.001. Metrica: mesma coluna GroupMax.FAF.frequency.
+
+Nota metrica: PM2 usa AF bruta (grpmax); BS1 e BA1 usam FAF (grpmax). No
+gnomAD v4 o grupo Middle Eastern e incluido no grpmax bruto, ao contrario da
+FAF. Clausula founder (BS1/BA1): variante patogenica fundadora conhecida e
+sinalizada para revisao manual, nunca cravada como benigna automaticamente.
 
 ## 6. Regra de combinacao de criterios ACMG/AMP (a definir)
 
