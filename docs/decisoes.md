@@ -97,22 +97,33 @@ gnomAD v4 o grupo Middle Eastern e incluido no grpmax bruto, ao contrario da
 FAF. Clausula founder (BS1/BA1): variante patogenica fundadora conhecida e
 sinalizada para revisao manual, nunca cravada como benigna automaticamente.
 
-## 6. Regra de combinacao de criterios ACMG/AMP (a definir)
+## 6. Regra de combinacao de criterios ACMG/AMP
 
 Decisao: a classificacao segue a diretriz ACMG/AMP 2015 (Richards S, et al.
 Genet Med. 2015;17(5):405-424. PMID: 25741868. DOI: 10.1038/gim.2015.30). A
-regra de combinacao dos criterios sera fixada na fase de analise, escolhendo-
-se UMA entre duas abordagens validas e documentando-a:
+regra de combinacao dos criterios fica fixada na fase de analise como a
+abordagem (a), o criterio qualitativo original de Richards et al. 2015:
 
-  (a) criterio qualitativo original (Richards et al., 2015); ou
-  (b) modelo de pontuacao bayesiana (Tavtigian et al., 2018), no qual os
-      pesos sao PVS1 = 8, Strong = 4, Moderate = 2, Supporting = 1, com
-      classificacao Pathogenic a partir de 10 pontos [citacao completa A
-      CONFIRMAR na fase de analise].
+  (a) ESCOLHIDA - criterio qualitativo original (Richards et al., 2015): a
+      classificacao em cinco niveis (Patogenica, Provavelmente Patogenica,
+      VUS, Provavelmente Benigna, Benigna) resulta das regras de combinacao
+      da Tabela 5 do artigo, por contagem e forca dos criterios acionados.
 
-Justificativa: definir uma unica regra evita classificacoes contraditorias. A
-escolha e adiada deliberadamente para a fase de analise, para nao fixar
-prematuramente um metodo que ainda depende dos dados consolidados.
+  (b) NAO adotada nesta fase, registrada como upgrade futuro - modelo de
+      pontuacao bayesiana (Tavtigian et al., 2018), no qual os pesos sao
+      PVS1 = 8, Strong = 4, Moderate = 2, Supporting = 1, com classificacao
+      Pathogenic a partir de 10 pontos [citacao completa a confirmar caso e
+      quando este modelo for adotado].
+
+Justificativa da escolha: no escopo atual poucos criterios se combinam
+(frequencia, PVS1, PP3/BP4), cenario em que a regra qualitativa do Richards
+2015 e suficiente, canonica e diretamente auditavel, e mantem coerencia com
+a decisao de limiares de frequencia (secao 5), tambem ancorada em Richards
+2015. A abordagem (b) e reconhecida como refinamento (alinhada ao sistema de
+pontos do ClinGen) e passa a valer a pena quando muitos criterios se
+combinam e a modulacao de forca importa; por isso fica documentada como
+caminho de upgrade, nao por desconhecimento. Definir uma unica regra evita
+classificacoes contraditorias.
 
 Aplicacao prevista dos criterios principais: PVS1 para variantes de perda de
 funcao (frameshift, nonsense, splice canonico), com as ressalvas de
