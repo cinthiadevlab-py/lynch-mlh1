@@ -1,8 +1,8 @@
 # Tradução clínica bioinformática de variantes do gene MLH1 (Síndrome de Lynch)
 
 **Autora:** Cinthia Morales (@cinthiadevlab-py)
-**Tipo:** Trabalho de Conclusão de Curso (TCC) — bioinformática clínica
-**Status:** Em construção (reconstrução limpa em andamento — ver "Estado atual")
+**Nível:** Projeto de nível TCC — bioinformática clínica
+**Status:** Em desenvolvimento — Fase 5 de 7 em andamento (ver "Estado atual")
 
 ---
 
@@ -28,8 +28,8 @@ em **reprodutibilidade** e **transparência de proveniência dos dados**.
 | **ClinVar** (NCBI) | classificações de variantes submetidas (MLH1) | release citado no dicionário de dados |
 | **gnomAD v4.1.1** | frequência alélica populacional real (MLH1) | GRCh38, MANE Select |
 | **gnomAD v4.1.1** (constraint) | tolerância do gene à perda de função | métricas pLI / LOEUF |
-| **AlphaMissense** | predição de impacto de variantes *missense* | a integrar (Fase 5) |
-| **InSiGHT** | curadoria gene-específica de Lynch | a integrar (Fase 5) |
+| **AlphaMissense** | predição de impacto de variantes *missense* | a integrar (Fase 7) |
+| **InSiGHT** | limiares gene-específicos de Lynch (via VCEP ClinGen/InSiGHT) | integrado (Fase 3) |
 
 Nenhum dado clínico privado é utilizado. Detalhes de cada coluna e sua
 proveniência ficam em `docs/dicionario_dados.md`.
@@ -81,27 +81,51 @@ lynch_project/
 
 ## Estado atual (atualizado a cada etapa)
 
-Este projeto é uma **reconstrução limpa** de um trabalho anterior. O repositório
-anterior é preservado apenas como registro histórico da evolução do trabalho e
-**não** é a base de código atual.
+O trabalho está organizado em sete fases. As quatro primeiras estão concluídas
+e versionadas; a quinta está em andamento. (O repositório anterior é preservado
+apenas como registro histórico da evolução do trabalho e não é a base de código
+atual.)
 
-**Concluído**
-- Estrutura canônica de diretórios criada e verificada.
-- Caminhos centralizados em `config/paths.R` (testados).
-- Política de versionamento de dados definida (`.gitignore`): dados reais
-  públicos são versionados; saídas regeneráveis são ignoradas.
+- **Fase 1 — Infraestrutura e reprodutibilidade** — *Concluída.* Estrutura de
+  diretórios canônica, caminhos centralizados em `config/paths.R` e scripts
+  auto-suficientes em R.
+- **Fase 2 — Harmonização genômica e normalização** — *Concluída.* Cruzamento
+  de ~8.300 variantes entre ClinVar e gnomAD v4.1.1, com normalização de indels
+  *reference-free* para casar coordenadas genômicas sem ambiguidade.
+- **Fase 3 — Base metodológica ACMG/AMP** — *Concluída.* Regra de combinação de
+  critérios segundo Richards et al. (2015) e limiares de frequência
+  gene-específicos do painel de especialistas ClinGen/InSiGHT MMR VCEP para o
+  MLH1 (especificação v2.0.0; transcrito NM_000249.4).
+- **Fase 4 — Enriquecimento de métricas** — *Concluída.* Materialização da
+  frequência alélica máxima por grupo populacional (grpmax, AF bruta),
+  necessária ao critério de raridade.
+- **Fase 5 — Classificação clínica e orquestração** — *Em andamento.* A
+  sub-etapa de critérios de frequência está concluída e validada (ver abaixo).
+  Faltam, nesta fase, os demais critérios (perda de função e preditores *in
+  silico*) e o orquestrador do pipeline.
+- **Fase 6 — Expansão estrutural (CNVs)** — Trabalho futuro.
+- **Fase 7 — Integração de predição por IA** — Trabalho futuro.
 
-**Em andamento**
-- Documentação base (`docs/`): padrões, metodologia, dicionário de dados,
-  decisões.
-- Ingestão e validação do conjunto real do gnomAD v4.1.1 (MLH1).
+### Sub-etapa de frequência (Fase 5, em andamento)
 
-**Próximas etapas**
-- Reconciliação das classificações de variantes com o ClinVar.
-- Implementação da classificação ACMG/AMP (**regra de combinação ainda em
-  definição** — Richards 2015 ou esquema de pontos; ver `docs/metodologia.md`).
-- Integração de predição *in silico* (AlphaMissense) e curadoria InSiGHT na
-  priorização de variantes de significado incerto (VUS).
+Aplicação dos critérios de frequência do ACMG/AMP sobre as ~8.300 variantes
+harmonizadas. Os valores abaixo são **critérios populacionais atendidos**
+(flags de frequência), **não** classificações finais:
+
+- **PM2_Supporting** (raridade; grpmax AF bruta < 0,00002): **7.145** variantes
+- **BS1** (frequência elevada; FAF ≥ 0,0001 e < 0,001): **156** variantes
+- **BA1** (frequência comum, *stand-alone*; FAF ≥ 0,001): **117** variantes
+- Variantes sinalizadas para revisão manual quanto a possível efeito fundador:
+  **273**
+
+O critério de raridade (PM2) usa a frequência máxima por grupo populacional
+(grpmax, AF bruta); os de frequência comum (BS1/BA1) usam a *filtering allele
+frequency* (FAF) — métricas distintas. A ausência de uma variante no gnomAD é
+tratada, de forma explícita e documentada, como frequência zero para o critério
+de raridade. Uma trava de coerência garante que nenhuma variante recebe
+simultaneamente o critério de raridade e os de frequência comum. A classificação
+clínica completa, combinando estes com os demais critérios ACMG/AMP, é a etapa
+seguinte.
 
 ---
 
@@ -145,3 +169,6 @@ respectivas fontes e não são relicenciados por este projeto.
   CC BY-NC 4.0 (uso acadêmico e não-comercial). Instruções de obtenção em
   docs/MIGRACAO.md. Este projeto inclui dados do gnomAD v4.1 release
   (https://gnomad.broadinstitute.org).
+  Referência do conjunto de dados: Chen S, et al. A genomic mutational
+  constraint map using variation in 76,156 human genomes. Nature.
+  2024;625(7993):92-100. doi:10.1038/s41586-023-06045-0.
