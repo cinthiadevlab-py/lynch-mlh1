@@ -44,6 +44,14 @@ resultados/relatorios/*
 dados/externos/*
 !dados/externos/.gitkeep
 
+# --- Dados de referencia publica (MANE / RefSeq) ---------------------
+# Anotacao MANE (NCBI/EBI), redistribuivel. NAO versionamos o blob cru
+# genome-wide (~8 MB): reproduzivel por URL+md5 documentados. Sobe apenas
+# a tabela derivada do MLH1 (.tsv) e o marcador da pasta (.gitkeep).
+dados/referencia/*
+!dados/referencia/.gitkeep
+!dados/referencia/*.tsv
+
 # --- NAO ignorar (deixar explicito o que SOBE) -----------------------
 # dados/brutos/      -> dado real publico (ClinVar)        : VERSIONADO
 #   (dominio publico; redistribuido com atribuicao - ver README/docs)
@@ -51,3 +59,5 @@ dados/externos/*
 #   (bruto sob restricao SpliceAI CC BY-NC 4.0; ver bloco acima)
 # dados/legado_simulado/ -> quarentena rotulada            : VERSIONADO
 #   (sobe rotulado como SIMULADO, para transparencia/honestidade)
+# dados/referencia/   -> referencia publica (MANE/RefSeq)  : conteudo ignorado
+#   (blob cru NAO versionado, reproduzivel por URL+md5; sobe so .tsv + .gitkeep)
